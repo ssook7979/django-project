@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="718" key="DIALOG_X_ORIGIN"/>
+		<item value="361" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="starting" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="starting"/>
+			<item value="stock-a"/>
+			<item value="수정"/>
+			<item value="_("/>
+			<item value="lazy"/>
+			<item value="token_generator"/>
+			<item value="다음"/>
+			<item value="curr"/>
+			<item value="is_update_article"/>
+			<item value="ajax_chart"/>
+			<item value="update_news"/>
+			<item value="price"/>
+			<item value="is_article_renew"/>
+			<item value="strptime"/>
+			<item value="view"/>
+		</list>
+		<list key="replacehistory">
+			<item value="is_update_article"/>
+			<item value="starting_date"/>
+			<item value="chart_selected"/>
+			<item value="list_order"/>
+			<item value="HttpResponseRedirect(reverse(&apos;wrong_path&apos;))"/>
+			<item value="HttpResponse(&apos;wrong_path&apos;)"/>
+			<item value="noticeBoard"/>
+			<item value=""/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="393" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="523" key="DIALOG_HEIGHT"/>
+		<item value="574" key="DIALOG_X_ORIGIN"/>
+		<item value="157" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

@@ -1,0 +1,76 @@
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Max
+from .forms import BoardWriteForm
+from django.urls import reverse
+import math
+from django.http.response import HttpResponseRedirect
+
+from .models import Post
+
+def index(request, postClass, page=1):
+    post_list = Post.objects.filter(post_class__exact=postClass).order_by('-post_order')
+    totalPage = math.ceil(len(post_list) / 15)
+    currPage = int(page)
+    lastPage = math.ceil(currPage / 5) * 5
+    pageRange = range(lastPage-4, lastPage+1)    
+   
+    #paging
+    postStart = (currPage-1)*15
+    if currPage != totalPage :
+        postEnd = currPage*15
+    else:
+        postEnd = len(post_list)
+        
+    posts = post_list[ postStart : postEnd]
+    
+    if len(posts) > 0:
+        pagingStat = True
+    else:
+        pagingStat = False
+        
+    context = {
+        'posts' : posts,
+        'currPage' : currPage,
+        'pageRange' : pageRange,
+        'totalPage' : totalPage,
+        'postClass' : postClass,
+    }
+    return render(request, 'board2/index.html', context)
+
+def read(request, postClass, postNum=1):
+    post = Post.objects.get(post_class__exact=postClass, post_order=int(postNum))
+    post.hit = post.hit+1
+    post.save()
+    
+    total_count = Post.objects.filter(post_class__exact=postClass).count()
+    pageNum = math.ceil((total_count - int(postNum) + 1) / 15)
+    
+    context = {
+               'post' : post,
+               'pageNum' : pageNum,
+               'postClass' : postClass,
+               }
+    return render(request, 'board2/read.html', context)
+
+def write(request, postClass):
+    form = BoardWriteForm()
+    context = {
+                'form' : form,
+                'postClass' : postClass,
+               }
+    return render(request, 'board2/write.html', context)
+
+def write_process(request, postClass):
+    max_auto_id = Post.objects.all().aggregate(Max('auto_id')).get('auto_id__max')
+    max_post_order = Post.objects.all().aggregate(Max('post_order')).get('post_order__max')
+    title = request.POST.get('title',None)
+    content = request.POST.get('content',None)
+    post = Post(title=title, content=content, auto_id=max_auto_id + 1, post_order=max_post_order + 1,  post_class=postClass)
+    post.save()
+    return HttpResponseRedirect(reverse('board2:index', kwargs={'postClass':postClass, 'page':1,}))
+
+def search_result(request,  postClass):
+    word = request.GET.get('word',None)
+    posts = Post.objects.filter(title__contains=word).order_by('-post_order')
+    context = { 'posts' : posts}
+    return render(request, 'board2/searchresult.html', context)

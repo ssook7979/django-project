@@ -1,0 +1,47 @@
+<meta charset="UTF-8">
+{% extends 'commons/base.html' %}
+{% load static %}
+
+{% block script %}
+{{ block.super }}
+{% load polls_extra %}
+{% endblock script %}
+
+{% block style %}
+{{ block.super }}
+{% endblock style %}
+
+{% block title %}이슈투표 - 투표하기{% endblock title%}
+{% block polls %}w3-blue{% endblock polls%}
+{% block dropdown %}w3-dropdown-content w3-bar-block w3-border{% endblock %}
+{% block content %}
+  <header class="w3-container" style="padding-top:22px">
+  
+    <h5><b>
+    	<i class="fa fa-bank" aria-hidden="true"></i>  이슈투표
+    </b></h5>
+  </header>
+   <div class="w3-container w3-margin-top" style="width:80%">
+	<div class="w3-right" style="margin-right:20px;">
+		<a href="{% url 'polls:index' %}" class="w3-button w3-gray">목록으로</a>
+	</div>
+	<br>
+   	<div class="w3-row-padding w3-padding-32" style="margin:0">
+    {% if error_message %}<p class='w3-text-red'><strong>{{ error_message }}</strong></p>{% endif %}
+    <form method="post" action="{% url 'polls:vote' question.id %}" class="w3-row-padding w3-border w3-card w3-padding-large">
+    {% csrf_token %}
+		<h5 class='w3-maring-bottom bold'>{{ question.question_text }}</h5>
+		 {% for choice in question.choice_set.all %}
+		  <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" class="w3-margin">
+		  <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label> <br>
+		 {% endfor %}
+		 <div class="w3-margin-top w3-center">
+		 {% if user.is_active %}
+			 <button class="w3-button w3-blue" type="submit">투표하기</button>
+		 {% endif %}
+			 <a class="w3-button w3-red" href="{% url 'polls:results' question.id %}">결과보기</a>
+		 </div>
+	 </form>
+	 </div>
+	</div>
+{% endblock content %}

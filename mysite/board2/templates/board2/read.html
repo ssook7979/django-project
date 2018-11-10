@@ -1,0 +1,158 @@
+<meta charset="UTF-8">
+{% extends 'commons/base.html' %}
+{% load static %}
+{% load board2_extra %}
+
+{% block script %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'board2/js/read.js' %}"></script>
+<script type="text/javascript" scr="{% static 'common/js/jquery-file-upload/js/vendor/jquery.ui.sidget.js' %}"></script>
+<script type="text/javascript" scr="{% static 'common/js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+<script type="text/javascript" scr="{% static 'common/js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+{% endblock script %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'board2/css/read.css' %}">
+{% endblock style %}
+
+{% block title %}
+	{% if post.post_class == 'F' %} 자유게시판-글읽기
+	{% elif post.post_class == 'N' %} 공지사항-글읽기
+	{% endif %}
+{% endblock %}
+
+{% block board2 %}
+{% if post.post_class == 'F' %}w3-blue
+{% else %}
+{% endif %}
+{% endblock board2 %}
+
+{% block noticeBoard %}
+{% if post.post_class == 'N' %}w3-blue
+{% else %}
+{% endif %}
+{% endblock noticeBoard %}
+
+{% block dropdown %}w3-dropdown-content w3-bar-block w3-border{% endblock %}
+{% block content %}
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-book" aria-hidden="true"></i>  게시글읽기</b></h5>
+  </header>
+ <div class="w3-panel">
+ 	{% if user.is_active and post.post_class == 'F' %}
+ 	<a href="{% url 'board2:write_reply' post.post_class post.id %}" class="w3-button w3-blue w3-right w3-small w3-margin-bottom bold">답글달기</a>
+ 	{% endif %}
+ 	<a href="{% url 'board2:index' post.post_class post.list_order|return_list:NUMBER_OF_POST_PER_PAGE %}" class="w3-button w3-blue w3-right w3-small w3-margin-right  w3-margin-bottom bold">목록으로</a>
+    <div class="w3-row-padding" style="margin:0 -16px" style="height:800px">
+		  <table class="w3-table w3-white">
+		  <thead>
+			  <tr class="dashed_bottom_border">
+			  	<th class="w3-padding-8">
+			  		{{ post.title }}
+			  	</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+		 	 <tr class="w3-border-0">
+			  	<td class="boderless">
+					<span class="w3-margin-right w3-small">{{ post.writer }}</span>
+					<span class="w3-margin-right w3-small">조회수 {{ post.hit }}</span>
+					<span class=" w3-small">{% if not post.updated_at %}{{ post.created_at|date:"Y.m.d H:i:s" }}{% else %}{{ post.updated_at|date:"Y.m.d H:i:s" }}{% endif %}</span><br>
+			  	</td>
+			  </tr>
+			  <tr>
+			  	<td class="w3-padding-16" style="height:600px; white-space:pre-line;">
+			  		{{ post.content }}
+			  	</td>
+			  </tr>
+			  {% if post.file_set %}  
+			  	{% for file in post.file_set.all %}
+			  <tr>
+			  	<td style="border-top:1px dashed gray;">
+				  	<p class="bold">첨부파일</p>
+			  		
+			  		<a href="{{ file.file.url }}" download>{{ file.file.name }}({{ file.file.size }} bytes)</a>
+			  	</td>
+			  </tr>
+			  	{% endfor %}
+			  
+			  {% endif %}
+		  	</tbody>	  
+		  </table>
+    </div>
+	{% if post.owner == user and user.is_active %}
+    <div class="w3-center">
+		<a href="{% url 'board2:update' post.id %}" class="w3-button w3-blue w3-center w3-small w3-margin-top bold">수정</a>
+		<a href="javascript:delete_check('{% url 'board2:delete' post.id %}')" class="w3-button w3-blue w3-center w3-small w3-margin-top bold">삭제</a>
+    </div>
+    {% endif %}
+    <br>
+    <div id="comment_list" >
+    {% if post.post_class == 'F' %}
+	<p class="bold" style="margin-left:10px; margin-bottom: 2px;">댓글읽기 [{{ paginator.count }}]</p>
+	<hr class="solid_dark-blue_line">
+	   <ul class="w3-ul w3-card-3">
+	   {% for comment in comments %}
+	   	<li class="w3-border-0" style="padding-bottom:0px;">
+	   		<div class="w3-bar-item w3-right" style="padding-bottom:0px;">
+	   		{% if comment.owner  == user and user.is_active %}
+		   		<span class="w3-text-gray w3-small w3-right" style="margin-right:10px;"><a class='no_text_decoration' href='javascript:comment_Ajax("{% url 'board2:delete_comment' comment.id %}", this)'>삭제</a></span>
+		   		<span class="w3-text-gray w3-small w3-right" style="margin-right:10px;"><a class='no_text_decoration' href='javascript:load_comment_form("#reply_form_{{ forloop.counter }}", "{% url 'board2:update_comment' comment.id %}")'>수정</a></span>
+		   	{% endif %}
+		   		<span class="w3-text-gray w3-small w3-right" style="margin-right:10px;"><a class='no_text_decoration' href='javascript:load_comment_form("#reply_form_{{ forloop.counter }}", "{% url 'board2:write_comment_reply' comment.id %}")'>답글</a></span>
+	   		</div>
+		   	<div class="w3-bar-item">
+	   		{% if comment.reply %}
+	   		<span>┗</span>
+	   		{% endif %}
+		   		<span class="w3-text-blue-gray bold">{{ comment.writer }} </span>
+		   		<span class="w3-text-gray w3-small">{% if not comment.updated_at %}{{ comment.created_at|date:"Y.m.d H:i:s" }}{% else %}{{ comment.updated_at|date:"Y.m.d H:i:s" }}{% endif %}</span>
+		   	</div>
+	   	</li>
+	   	<li class="w3-border-0">
+	   		<div style="width:100%">
+	   			{% if comment.reply %}
+	   			<span class="w3-text-red bold" style="margin-left:18px">@{{comment.reply.writer}}&nbsp; &nbsp;</span>
+		   		{% endif %}
+		   		{{ comment.content }}
+		   		<form class="reply-form w3-bar" id="reply_form_{{ forloop.counter }}" style='margin-top:16px;'>
+		   		</form>
+	   		</div>
+	   	</li>
+	   <hr class="dotted_line">
+	   {% endfor %}
+	    <div class="w3-bar w3-center w3-margin-top">
+		  <a href='javascript:get_comment("{% url 'board2:read_comment_page_change' post.post_class post.id page|page_move:"-5" %}")' class="no_text_decoration w3-margin-right">&laquo;</a>
+		  {% for p in page_list %}
+			{% if p == page|to_int %}
+				 <a href='javascript:get_comment("{% url 'board2:read_comment_page_change' post.post_class post.id p %}")' class="no_text_decoration bold w3-margin-right"><b>{{ p }}</b></a>				  
+			{% else %}
+				 <a href='javascript:get_comment("{% url 'board2:read_comment_page_change' post.post_class post.id p %}")' class="no_text_decoration w3-margin-right">{{ p }}</a>		
+			{% endif %}
+		  {% endfor %}
+		  	{% if page|page_move:"5" > paginator.num_pages%}
+		  	<a class='no_text_decoration' href='javascript:get_comment("{% url 'board2:read_comment_page_change' post.post_class post.id paginator.num_pages %}")'>&raquo; </a>  
+			{% else %}
+		  	<a class='no_text_decoration' href='javascript:get_comment("{% url 'board2:read_comment_page_change' post.post_class post.id page|page_move:"5" %}")'>&raquo; </a>  
+		 	{% endif %}
+		 </div>
+	   	<li>
+	   		<form method="POST" class="comment-div w3-bar w3-margin-top">
+	   		{% if user.is_active %}
+	   		{% csrf_token %}
+	   		{{ form }}
+	   		<button type="button" class="w3-button w3-blue w3-bar-item" style="height:60px; margin-left:5px;" onclick='comment_Ajax("{% url 'board2:write_comment' post.id %}", this);'>등록</button>
+	   		{% else %}
+	   		<textarea class='w3-input w3-border w3-bar-item' style='width:90%; margin:0px;' placeholder="로그인 또는 메일인증 후 댓글을 작성할 수 있습니다." disabled></textarea>
+	   		<button type="button" class="w3-button w3-blue w3-bar-item" style="height:60px; margin-left:5px;" disabled>등록</button>
+	   		{% endif %}
+	   		</form>
+	   	</li>
+	   </ul>
+    </div>
+    {% endif %}
+  </div>
+{% endblock content %}

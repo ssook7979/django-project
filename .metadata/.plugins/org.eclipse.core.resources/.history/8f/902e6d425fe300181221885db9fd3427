@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* loader animation */
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* html decorator */
+.text-button {
+	border: none;
+    background-color: inherit;
+    color:DodgerBlue;
+    font-size: 16px;
+    padding:0px;
+    margin:0px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.bold {
+	font-weight:bold
+}
+.textIndent {
+	text-indent: 15px;
+}
+.no_text_decoration {
+	text-decoration:none;
+}
+.dotted_line {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px dotted #ccc;
+    margin: 0px 5px 0px 5px;
+    padding: 0;
+}
+.dashed_line {
+    display: block;
+    height: 1.2px;
+    border: 0;
+    border-top: 1px dashed #ccc;
+    margin: 0px 5px 0px 5px;
+    padding: 0;
+}
+.solid_line {
+    display: block;
+    height: 1.2px;
+    border: 0;
+    border-top: 1px dashed #ccc;
+    margin: 0px 5px 0px 5px;
+    padding: 0;
+}
+.solid_dark-blue_line {
+    display: block;
+    height: 3px;
+    border: 0;
+    border-top: 3px solid #0000cd;
+    margin: 0px 5px 0px 5px;
+    padding: 0;
+}
+.dashed_bottom_border {
+	border-bottom:1px dashed gray;	
+}

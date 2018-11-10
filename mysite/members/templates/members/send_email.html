@@ -1,0 +1,18 @@
+<meta charset='utf-8'>
+<!-- Trigger -->
+<span>지금</span>
+<button class="text-button underline bold" onclick=activate_account();>활성화</button>
+<span>하시겠습니까?</span>
+<!-- Modal -->
+<div id="sendEmail-modal" class="modal">
+	<!-- Modal Contents -->
+	<div id="sendEmail-modal-content" class="modal-content">
+		<div class="container">
+			<span class="close" onclick="shut_modal()">&times;</span>
+			<p>이메일 인증 후 회원가입이 완료됩니다.</p>
+			<p id="send_alarm" style='display:none'>회원가입하신 메일주소 <b>{{ user.email }}</b> 으로 메일이 발송되었습니다. </p>
+			<button class="w3-button w3-blue" onclick=send_again()>재전송</button>
+			<button onclick="shut_modal()" class="w3-button w3-red">완료</button>
+		</div>
+	</div>
+</div>

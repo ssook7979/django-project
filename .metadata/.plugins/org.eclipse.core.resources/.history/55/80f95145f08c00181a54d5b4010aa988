@@ -1,0 +1,81 @@
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
+from django.core import serializers
+import json, datetime
+from datetime import datetime
+
+from bs4 import BeautifulSoup
+import requests
+import time
+from random import randint
+'''
+from .models import Article
+from .models import Stock
+from .models import Word
+'''
+def index(request):
+    stock_list = Stock.objects.order_by('-price')
+    context = {
+        'stock_list': stock_list,
+    }
+    return render(request, 'board/index.html', context)
+
+def search_stock(request):
+    search = request.GET.get('search',None)
+    searches = Stock.objects.filter(string__contains=search)
+    search_list = serializers.serialize('json', search)
+    return HttpResponse(search_list, content_type='application/json')
+
+
+
+def detail(request, article_id):
+    article = get_object_or_404(Article, article_id=article_id)
+    
+    return render(request, 'board/detail.html', {'article': article})
+
+def add(request, article_id):
+    return HttpResponse("%s" % article_id)
+
+def modify(request, article_id):
+    article = get_object_or_404(Article, article_id=article_id)
+    try:
+        selected_article = article.modify_article.get(pk=request.POST['article_id'])
+    except (KeyError, Article.DoesNotExist):
+        return render(request, 'board/detail.html', {'article':article, 'error_message' : 'You do not have article',})
+    else:
+        pass
+    return HttpResponseRedirect(reverse('board:modify', args=article_id))
+
+def delete(request, article_id):
+    stock_list = get_object_or_404(Stock, pk=request.Post['article_id'])
+    return render(request, 'board/delete.html', {"stock_list" : stock_list, 'error_message' : 'You do not have stock',})
+
+def chart(request):
+    stock_list = Stock.objects.all().values('stock_name','stock_id').distinct() 
+    #stock_id = Stock.objects.values_list('stock_id', flat=True)
+    #stock_list = {"stock_name" : stock_name, "stock_id":stock_id}   
+    return render(request, 'board/chart1.html',{"stock_list":stock_list})
+
+def json_default(value): 
+    if isinstance(value, datetime.date): 
+        return value.strftime('%Y-%m-%d') 
+    raise TypeError('not JSON serializable')
+
+def graph_object(request):
+    date1 = request.GET.get('date1',None)
+    date2 = request.GET.get('date2',None)
+    stock_input = request.GET.get('stock_input',None)
+    #stock_list = Stock.objects.filter(price__range=[1000, 3000]).values()
+    stocks_ = Stock.objects.filter(date__range=[date1,date2], stock_id=stock_input)
+    stock_list = serializers.serialize('json', stocks_)
+    return HttpResponse(stock_list, content_type='application/json')
+    #return JsonResponse(serializers.serialize('json', stock_list), safe=False)
+def bring_issue(request):
+    date = request.GET.get('date', None)
+    stock_name =  request.GET.get('stock_name', None)
+    word_list = Word.objects.filter(date = date, stock_name=stock_name)
+    word_list = serializers.serialize('json', word_list)
+    return HttpResponse(word_list, content_type='application/json')
+
+    
+    

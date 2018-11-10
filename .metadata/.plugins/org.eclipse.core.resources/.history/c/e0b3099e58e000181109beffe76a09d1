@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+{% load board_extra %}
+	<ul class="w3-ul">
+		<li class="w3-blue">
+		    <span><i class="fa fa-newspaper-o" aria-hidden="true"></i>  주요뉴스</span> 			
+		</li>
+	{% for article in article_list %}
+	  <li class="w3-padding-large w3-border-0">
+		  <span class="w3-small">{{ article.0 }}</span>
+		  <span><a style="text-decoration:none" href="{{ article.1 }}">{{ article.2 }}</a></span>
+	  	  <p>
+	  	  	{% for keyword in article.3 %}
+	  	  		{{ keyword }}{% if forloop.last %}{% else %}<span class="bold w3-text-blue">||</span>{% endif %}
+	  	  	{% endfor %}
+	  	  </p>
+	  </li>
+ 	  <hr class="dotted_line">
+	{% endfor %}
+	</ul>
+ 	<div class="w3-bar w3-center">
+ 		<a {% if curr_page != 1 %}href="javascript:update_news({{curr_page}}-1)"{% else %}{% endif %} class="w3-button">< 이전</a>
+ 		<a href="javascript:" class="w3-button">{{curr_page}}</a>
+ 		<a {% if curr_page|to_int != last_page|to_int %}href="javascript:update_news({{curr_page}}+1)"{% else %}{% endif %} class="w3-button">다음 ></a>
+	</div>
+</div>

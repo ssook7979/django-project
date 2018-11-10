@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;mysite/static/common/js/getCookies.js&apos;" deleteContents="false" description="Delete resource &apos;mysite/static/common/js/getCookies.js&apos;" element1="/mysite/static/common/js/getCookies.js" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1536306354746"/>
+</session>

@@ -1,0 +1,114 @@
+#-*- coding:utf-8 -*-
+
+from django.shortcuts import render, get_object_or_404
+from django.http.response import HttpResponse, JsonResponse
+from django.core import serializers
+import json, datetime, math, time
+from django.core.serializers.json import DjangoJSONEncoder
+import pandas as pd
+from django.core.paginator import Paginator
+from datetime import datetime, timedelta
+from time import strftime
+from random import randint
+from itertools import chain
+from .models import Article,Stock,Stocklist
+from board2.models import Post
+from django.db.models import F,Q
+from polls.models import Question
+import re, json
+from django.template.loader import render_to_string
+
+NUMBER_OF_POST_PER_PAGE = 5
+TODAY = datetime.today().strftime("%Y-%m-%d")
+
+def sub_day(date, days):
+    to_dt = datetime.strptime(date,'%Y-%m-%d') - timedelta(days=days)
+    return to_dt.strftime('%Y-%m-%d')
+
+def queryset_to_list(queryset, header=''):
+    li = header
+    for date, price in queryset:  
+        li += '["{0}",{1}],'.format(date.strftime("%y.%m.%d."), price)
+    return li[:-1]
+
+def index(request):
+    article_list = Article.objects.filter(date__range=[sub_day(TODAY,5), TODAY])[:10]
+    stocklist_up = Stock.objects.filter(date__range=[sub_day(TODAY,5), TODAY]).order_by('-date', '-updown_percentage')[:2]
+    stocklist_down = Stock.objects.filter(date__range=[sub_day(TODAY,5), TODAY]).order_by('-date', 'updown_percentage')[:2]
+    notice_list = Post.objects.filter(post_class__exact='N', display__exact='Y').order_by('list_order')[:3]
+    post_list = Post.objects.filter(post_class__exact='F', display__exact='Y').order_by('list_order')[:6]
+    question = Question.objects.filter(Q(end_date__isnull=True)).latest('pub_date')
+    context = {
+        'stocklist_up': stocklist_up,
+        'stocklist_down': stocklist_down,
+        'notice_list': notice_list,
+        'post_list': post_list,
+        'question': question,
+        'article_list': article_list,
+    }
+    return render(request, 'board/index.html', context)
+
+#def chart(request, stock_id=4690, date1=datetime.today()-timedelta(days=30), date2=datetime.today()):
+def chart(request, stock_id='004690', date1=sub_day(TODAY,30), date2=TODAY):
+    def bring_contexts():
+        stock = Stocklist.objects.get(stock_id=stock_id) #해당 주식 가져오기
+        article_queryset = Article.objects.filter(date__range=[date1, date2], stock=stock).distinct().values('date','title','url','keyword')
+        #pagination
+        paginator = Paginator(article_queryset, NUMBER_OF_POST_PER_PAGE)
+        last_page = paginator.num_pages
+        curr_page = request.GET.get('curr_page',1)        
+        articles = paginator.get_page(curr_page)
+        #최종 article list
+        article_list = [[x['date'], x['url'], x['title'], x['keyword'].split("\n")] for x in articles]
+        article_html = render_to_string('board/article_html.html',
+            {'article_list':article_list,
+            'last_page': last_page,
+            'curr_page': curr_page,
+        })
+        
+        price_queryset = Stock.objects.filter(stock_id=stock_id, date__range=[date1, date2]).order_by('date').values_list('date','price')        
+        price_list = queryset_to_list(price_queryset, '["날짜","가격(원)"],')
+            
+        data = {
+            'stock': stock,
+            'date1': date1,           
+            'date2': date2,
+            'price_list': price_list,
+            'article_html':article_html,           
+        }
+        
+        return data
+        
+    if request.method == 'GET':
+        stock_list = Stocklist.objects.all()
+        context = bring_contexts()   
+        context['stock_list'] = stock_list
+        print(context.stock)
+        return render(request, 'board/chart1.html', context)
+    
+    elif request.is_ajax():
+        data = bring_contexts()
+        context = json.dump(data)
+        return HttpResponse(context, content_type='application/json')
+    
+        
+def update_news(request, stock_id='004690', date1=sub_day(TODAY,30), date2=TODAY):
+    if request.is_ajax():
+        stock = Stocklist.objects.get(stock_id=stock_id)
+        article_queryset = Article.objects.filter(date__range=[date1, date2], stock=stock).distinct().values('date','title','url','keyword')
+        paginator = Paginator(article_queryset, NUMBER_OF_POST_PER_PAGE)
+        last_page = paginator.num_pages
+        
+        curr_page = request.GET.get('page',1)        
+        articles = paginator.get_page(curr_page)
+        article_list = [[x['date'], x['url'], x['title'], x['keyword'].split("\n")] for x in articles]
+        article_html = render_to_string('board/article_html.html',
+            {'article_list':article_list,
+            'last_page': last_page,
+            'curr_page': curr_page,
+        })
+        data = json.dumps({'article_html':article_html})
+        return HttpResponse(data, content_type='application/json')
+
+    
+    

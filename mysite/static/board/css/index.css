@@ -1,0 +1,18 @@
+.no_over_flow_table {
+	width:100%;
+    table-layout:fixed;	
+}
+
+.overflow_hidden {
+	text-overflow:ellipsis; 
+	overflow:hidden;
+	 white-space:nowrap;
+}
+
+.stock-div {
+	 height: 150px !important;
+}
+.stock-a {
+	 text-decoration: none;
+	 overflow: hidden;
+}

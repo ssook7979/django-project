@@ -1,0 +1,46 @@
+#title {
+    width:100%;
+    height:100%;
+}
+
+#contentBox {
+	width:100%;
+	height:100%;
+}
+
+th {
+	font-weight:normal;
+}
+
+.boderless {
+	border-bottom:hidden;
+}
+
+.dashed_bottom_border {
+	border-bottom:1px dashed gray;	
+}
+
+.comment-div .reply-form{
+	width: 100%;
+}
+textarea {
+	height:60px;
+	width: 90%;
+	resize: vertical;
+    overflow: auto;
+}
+
+.form-button {
+	padding:2px !important;
+	margin-left:5px;
+	font-size:12px;
+	width:31px !important;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+.form-button:hover {
+    background-color: #CDCBCB !important;
+}
+
+

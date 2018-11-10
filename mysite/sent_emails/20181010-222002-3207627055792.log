@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: password_reset
+From: webmaster@localhost
+To: ssook797@hanmail.net
+Date: Wed, 10 Oct 2018 13:20:02 -0000
+Message-ID: <153917760274.79276.16743531679877955784@DESKTOP-EC4J1LJ>
+
+
+To initiate the password reset process for your ssook797@hanmail.net TestSite Account,
+click the link below:
+
+http://127.0.0.1:8000/reset/NjU/50b-c4c8b97c85cdf7618db6/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The TestSite Team
+
+-------------------------------------------------------------------------------

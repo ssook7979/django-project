@@ -1,0 +1,21 @@
+# -*- coding:utf-8 -*-
+
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
+    
+    class Meta:
+        model = User
+        fields = ('email','username','password1','password2')
+        help_texts = {
+            'password1' : _('숫자와 문자를 모두 사용하여 8자이상의 비밀번호를 입력하세요'),
+        }
+       
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].help_text = _('숫자와 문자를 모두 사용하여 8자이상의 비밀번호를 입력하세요')
+        self.fields['email'].help_text = _('아이디로 사용할 이메일을 입력하세요')

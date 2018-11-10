@@ -1,0 +1,29 @@
+<p style="margin:0px">회원이 아니신가요?</p>
+<span>지금</span>
+<button class="text-button w3-white" onclick="document.getElementById('signup-modal').style.display='block'">
+	<span class="w3-text-blue bold underline">회원가입</span>
+</button>
+<span>하세요!</span>
+<!-- The Modal (contains the Sign Up form) -->
+<div id="signup-modal" class="modal">
+  <span onclick=shut_modal() class="close" title="Close Modal">&times;</span>
+  <div class="modal-content">
+    <form class="container" id="signupForm" method="POST">
+  	  {% csrf_token %} 
+      <h1>회원가입</h1>
+      <hr>
+      
+      {% for field in form %}
+	  {{ field.label }}
+	  {{ field }}
+	  <p class="errorMessage" style='color:red'>{{ field.errors }}</p>
+      {% endfor %}
+      <div>{{ form.non_field_errors }}</div>
+      <div class="clearfix">
+        <button type="button" class="w3-button w3-blue" id="btn" onclick=signupAjax()>회원가입</button>
+        <button type="button" onclick=shut_modal() class="w3-button w3-red">취소</button>
+      </div>
+
+    </form>
+  </div>
+</div>

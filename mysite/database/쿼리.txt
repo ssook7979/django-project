@@ -1,0 +1,46 @@
+** table 삭제
+drop table board_word;
+drop table board_stock;
+drop table board_article;
+drop table board2_post;
+drop table board2_comment;
+
+
+** csv table에 추가
+[board_article]
+load data local infile 'c:/mysql/mysql-files/board_article.csv' 
+into table board_article character set utf8 fields terminated by ',' 
+(stock_name, title, press, url, date, time) set auto_id=Null;
+
+[board_stock]
+load data local infile 'c:/mysql/mysql-files/board_stock.csv' 
+into table board_stock character set utf8 fields terminated by ',' 
+(stock_id, stock_name, date, price, max_price, min_price, sales_amount) set auto_id=Null;
+
+[board_word]
+load data local infile 'c:/mysql/mysql-files/board_word.csv' 
+into table board_word character set utf8 fields terminated by ',' 
+(stock_id, date, stock_name, updown, issue, content) set auto_id=Null;
+
+
+** procedure
+
+drop procedure if exists fill_board2_post$$
+create procedure fill_board2_post()
+begin
+	declare i int default 1;
+	declare stock_name varchar(20);
+	
+	while i <100 do
+	insert board2_post (title, writer, content, hit,created_at,reply,post_class)
+values (concat('글제목',i),concat('글쓴이',i),concat('글내용',i),0,CURRENT_TIMESTAMP,0,'F');
+	set i=i+1;
+end while;
+end$$
+delimiter $$
+
+call fill_board2_post();
+
+delimeter 함께하지 않아야(한줄한줄씩 실행) 작동 됨. 왜인지 모름...
+
+w3-orange w3-teal w3-blue w3-red

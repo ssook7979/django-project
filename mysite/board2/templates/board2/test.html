@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% load static %}
+<link rel="stylesheet" href="{% static 'board2/css/write.css' %}">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div class="clearfix">
+	<div id="sidebar">
+	     <span id="position"></span>
+	    <div id="dragbar"></div>
+	    sidebar
+	</div>
+	<div id="main">
+	    main
+	</div>
+	</div>
+	<div id="console"></div>
+	<script type="text/javascript" src="{% static 'board2/js/write.js' %}"></script>
+</body>
+</html>

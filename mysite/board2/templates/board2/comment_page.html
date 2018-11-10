@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+{% load board2_extra %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>댓글보기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static 'board2/js/read.js' %}"></script>
+<script type="text/javascript" src="{% static 'common/js/common.js' %}"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{% static 'board2/css/read.css' %}">
+<link rel="stylesheet" href="{% static 'common/css/common.css' %}">
+</head>
+<body>
+<p class="bold" style="margin-left:15px; margin-bottom: 2px;">댓글읽기 [{{ paginator.count }}]</p>
+<hr class="solid_dark-blue_line">
+    <div>
+	   <ul id="commnet_list" class="w3-ul w3-card-3">
+	   {% for comment in comments %}
+	   	{% if comment.display == 'Y' %}
+	   	<li class="w3-border-0" style="padding-bottom:0px;">
+	   		<div class="w3-bar-item w3-right" style="padding-bottom:0px;">
+	   		{% if comment.owner  == user and user.is_active %}
+		   		<span class="w3-text-gray w3-small w3-right" style="margin-right:10px;"><a href='javascript:comment_Ajax("{% url 'board2:delete_comment' comment.id %}", this)'>삭제</a></span>
+		   		<span class="w3-text-gray w3-small w3-right" style="margin-right:10px;"><a href='javascript:load_comment_form("#reply_form_{{ forloop.counter }}", "{% url 'board2:update_comment' comment.id %}")'>수정</a></span>
+		   	{% endif %}
+		   		<span class="w3-text-gray w3-small w3-right" style="margin-right:10px;"><a href='javascript:load_comment_form("#reply_form_{{ forloop.counter }}", "{% url 'board2:write_comment_reply' comment.id %}")'>답글</a></span>
+		   	</div>
+		   	<div class="w3-bar-item">
+	   		{% if comment.reply %}
+	   		<span>┗</span>
+	   		{% endif %}
+		   		<span class="w3-text-blue-gray bold">{{ comment.writer }} </span>
+		   		<span class="w3-text-gray w3-small">{% if not comment.updated_at %}{{ comment.created_at|date:"Y.m.d H:i:s" }}{% else %}{{ comment.updated_at|date:"Y.m.d H:i:s" }}{% endif %}</span>
+		   	</div>
+	   	</li>
+	   	<li class="w3-border-0">
+	   		<div style="width:100%">
+	   		{% if comment.reply %}
+	   		<span class="w3-text-red bold" style="margin-left:18px">@{{comment.reply.writer}}&nbsp; &nbsp;</span>
+		   	{% endif %}
+		   	{{ comment.content }}
+		   	<form id="reply_form_{{ forloop.counter }}" style='margin-top:16px;'>
+		   	</form>
+	   		</div>
+	   	</li>
+	   	{% endif %}
+	   <hr class="dotted_line">
+	   {% endfor %}
+	           <div class="w3-bar w3-center w3-margin-top">
+			  <a href="{% url 'board2:comment_page_with_page' post_id page|page_move:"-5" %}" class="w3-margin-right">&laquo;</a>
+		      {% for p in page_list %}
+				{% if p == page|to_int %}
+					 <a href="{% url 'board2:comment_page_with_page' post_id p %}" class="bold w3-margin-right">{{ p }}</a>				  
+				{% else %}
+					 <a href="{% url 'board2:comment_page_with_page' post_id p %}" class="w3-margin-right">{{ p }}</a>		
+				{% endif %}
+		      {% endfor %}
+		      {% if page|page_move:"5" > paginator.num_pages%}
+			  	<a href="{% url 'board2:comment_page_with_page' post_id paginator.num_pages %}">&raquo; </a>
+			  {% else %}
+			  	<a href="{% url 'board2:comment_page_with_page' post_id page|page_move:"5" %}">&raquo; </a>
+			  {% endif %}	  
+		</div>
+	   
+	   	<li>
+	   		{% if user.is_active %}
+	   		<form method="POST" class="comment-div w3-bar w3-margin-top">
+	   		{% csrf_token %}
+	   		{{ form }}
+	   		<button type="button" class="w3-button w3-blue w3-bar-item" style="height:60px; margin-left:5px;" onclick='comment_Ajax("{% url 'board2:write_comment' post_id %}", this);'>등록</button>
+	   		</form>
+	   		{% else %}
+	   		<textarea placeholder="로그인 또는 회원인증 후 댓글을 작성할 수 있습니다." disabled></textarea>
+	   		{% endif %}
+	   	</li>
+	   </ul>
+    </div>
+	
+</body>
+</html>

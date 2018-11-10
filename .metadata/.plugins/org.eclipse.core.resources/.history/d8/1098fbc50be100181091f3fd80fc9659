@@ -1,0 +1,15 @@
+.no_over_flow_table {
+	width:100%;
+    table-layout:fixed;	
+}
+
+.overflow_hidden {
+	text-overflow:ellipsis; 
+	overflow:hidden;
+	 white-space:nowrap;
+}
+
+.width-200px {
+	width:200px !important;
+}
+

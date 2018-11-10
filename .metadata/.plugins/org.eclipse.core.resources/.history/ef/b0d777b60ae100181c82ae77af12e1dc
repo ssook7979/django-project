@@ -1,0 +1,11 @@
+table {
+	width:100%;
+    table-layout:fixed;	
+}
+
+.overflow_hidden {
+	text-overflow:ellipsis; 
+	overflow:hidden;
+	 white-space:nowrap;
+}
+

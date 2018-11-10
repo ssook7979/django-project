@@ -1,0 +1,38 @@
+#-*- coding:utf-8 -*-
+
+from django.contrib import admin
+from board2.models import Post, Comment
+from members.models import CustomUser
+from templates.commons.admin import admin_site
+
+
+class CommentInline(admin.TabularInline):
+    model = Comment
+    
+class AdminPost(admin.ModelAdmin):
+    def delete_post(modeladmin, request, queryset):
+        queryset.update(display='N')
+        
+    def revive_post(modeladmin, request, queryset):
+        queryset.update(display='Y')
+        
+    def move_to_free(modeladmin, request, queryset):
+        queryset.update(post_class='F')
+        
+    def move_to_notice(modeladmin, request, queryset):
+        queryset.update(post_class='N')
+           
+    delete_post.short_description = "선택한 요소를 게시판에서 삭제합니다."
+    revive_post.short_description = "선택한 요소를 복원합니다."
+    move_to_free.short_description = "선택한 요소를 자유게시판으로 이동합니다."
+    move_to_notice.short_description = "선택한 요소를 공지사항으로 이동합니다."
+    
+    list_display = ('title', 'writer', 'display', 'post_class')
+    ordering = ('display','post_class', 'list_order',)
+    inlines = [
+        CommentInline,
+    ]
+    actions = [delete_post, revive_post, move_to_free, move_to_notice]
+    
+admin_site.register(Post, AdminPost)
+admin_site.disable_action('delete_selected')

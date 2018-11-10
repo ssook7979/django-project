@@ -1,0 +1,33 @@
+from django.conf.urls import url, include
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.views.generic.base import TemplateView
+from django.conf import settings 
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, UnameChangeForm, CustomPasswordChangeForm
+from . import views
+import re
+
+
+app_name = 'members'
+urlpatterns = [
+    #url(r'^signup/$', TemplateView.as_view(template_name='members/signup.html', extra_context={'form': CustomUserCreationForm}), name='signup'),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^login/$', views.login_view, name='login'),
+    url(r'^send_email/$', TemplateView.as_view(template_name='members/send_email.html'), name='send_email'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^send_email_again/$', views.send_email_again, name='send_email_again'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate, name='activate'),
+    url(r'^password_change/$', 
+        auth_views.PasswordChangeView.as_view(
+            template_name='members/password_change.html', 
+            success_url='/members/password_change_done/',
+            form_class=CustomPasswordChangeForm,
+        ), 
+        name='password_change'),
+    url(r'^password_change_done/$', auth_views.PasswordChangeDoneView.as_view(template_name='members/password_change_done.html'), name='password_change_done'),
+    url(r'^user_change/$', views.user_change, name='user_change'),
+]
+    #url(r'', include('django.contrib.auth.urls')),
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

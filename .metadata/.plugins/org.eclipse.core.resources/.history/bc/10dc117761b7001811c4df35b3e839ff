@@ -1,0 +1,53 @@
+# -*- coding:utf-8 -*-
+
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from distributed.core import error_message
+import re
+'''
+from .models import CustomUser
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email')
+'''           
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    username = forms.RegexField(
+        label=_("username"), 
+        max_length=20, 
+        regex=r'^[\w.@+-]+$',
+        help_text = _("숫자, 문자, @/./+/-/_ 20자 이하")
+        )
+    password1 = forms.PasswordInput(
+        help_text = _("대소문자,숫자,특수문자(#?!@$%^&*-) 8-12자")
+        )
+    
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('email','username','password1','password2')
+    
+       
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['email'].help_text = _('아이디로 사용할 이메일을 입력하세요')
+        self.fields['email'].label = _('이메일')
+        for key, value in self.fields.items():
+            self.fields[key].widget.attrs['class'] = 'textInput'
+            self.fields[key].widget.attrs['style'] = 'margin:0'
+            self.fields[key].widget.attrs['placeholder'] = self.fields[key].help_text
+            
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError(
+                _("이미 등록된 이메일입니다."),
+                code='email_exists',
+            )
+        return data

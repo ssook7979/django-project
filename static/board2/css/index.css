@@ -1,0 +1,28 @@
+
+table {
+	width:100%;
+    table-layout:fixed;	
+}
+
+.overflow_hidden {
+	text-overflow:ellipsis; 
+	overflow:hidden;
+	 white-space:nowrap;
+}
+
+td {
+	font-size: 15px;
+}
+
+th {
+	font-size: 12px;
+	border-bottom:1px solid gray;
+}
+
+.align_center {
+	text-align:center;
+}
+.align_right {
+	text-align:center;
+}
+

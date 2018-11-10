@@ -1,0 +1,76 @@
+<meta charset="UTF-8">
+{% extends 'commons/base.html' %}
+{% load static %}
+{% load board2_extra %}
+
+{% block script %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'board2/js/write2.js' %}"></script>
+<script src="{% static 'jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
+<script src="{% static 'jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
+<script src="{% static 'jquery-file-upload/js/jquery.fileupload.js' %}"></script>
+<script type="text/javascript" src="{% static 'file/js/upload.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock script %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'board2/css/write2.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock style %}
+
+{% block title %}
+자유게시판-
+{% if 'update' in request.path %}
+수정하기
+{% else %}
+글쓰기
+{% endif %}
+{% endblock %}
+
+{% block board2 %}w3-blue{% endblock %}
+{% block dropdown %}w3-dropdown-content w3-bar-block w3-border{% endblock %}
+{% block content %}
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5 class="bold"><b><i class="fa fa-pencil" aria-hidden="true"></i>  게시글{% if 'update' in request.path %} 수정하기{% else %} 쓰기{% endif %}</b></h5>
+  </header>
+ <div class="w3-panel">
+    <form method="post" action= 
+	 {% if reply_to_id %}
+	    "{% url 'board2:write_reply' postClass reply_to_id %}"
+	 {% endif %}
+	 
+	 {% if 'update' in request.path %}
+	    "{% url 'board2:update' post_id %}"
+	 {% else %}
+	    "{% url 'board2:write' postClass %}"
+	 {% endif %}
+     class="w3-row-padding" style="margin:0 -16px" style="height:800px" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  {% for field in form %}
+		  	{{ field.label_tag }}
+		  	{{ field }}
+		  	{% if field.label == '글내용' %}
+			  <div id="grippie" draggable="false"></div>
+			{% endif %}		  	
+		  	<br>
+		  {% endfor %}
+		  
+		  {% include 'file/file_upload.html' %}
+	    <div class="w3-center">
+			<input type="submit" class="w3-button w3-blue w3-small w3-margin-top" value=
+		{% if 'update' in request.path %}
+			"수정"/>
+		{% else %}
+			"등록"/>
+		{% endif %}
+			
+			<a href="{% url 'board2:index' postClass 1 %}" class="w3-button w3-blue w3-small w3-margin-top">취소</a>
+	    </div>
+
+    </form>
+  </div>
+  <hr>
+{% endblock content %}

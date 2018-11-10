@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>댓글보기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static 'board2/js/read.js' %}"></script>
+<script type="text/javascript" src="{% static 'common/js/common.js' %}"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{% static 'board2/css/read.css' %}">
+<link rel="stylesheet" href="{% static 'common/css/common.css' %}">
+</head>
+<body>
+<div id="comment_form" class="w3-bar">
+	{{ form }}
+	{% if type == 'update' %}
+	<button type="button" class="w3-blue w3-bar-item form-button" onclick='comment_Ajax("{% url 'board2:update_comment' comment_id%}",this)'>수정</button>
+	<button type="button" class="w3-red w3-bar-item form-button" onclick='close_form(this)'>취소</button>
+	{% elif type == 'reply' %}
+	<button type="button" class="w3-blue w3-bar-item form-button" onclick='comment_Ajax("{% url 'board2:write_comment_reply' comment_id %}",this)'>등록</button>
+	<button type="button" class="w3-red w3-bar-item form-button" onclick='close_form(this)'>취소</button>
+	{% endif %}
+	
+</div>
+</body>
+</html>

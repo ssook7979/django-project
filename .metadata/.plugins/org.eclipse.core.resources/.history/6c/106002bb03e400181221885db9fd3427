@@ -1,0 +1,14 @@
+{% autoescape off %}
+{{ user.get_username }}님,
+
+비밀번호를 재설정하려면 아래 링크를 클릭하세요.
+
+
+
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+
+
+
+[뉴스 in 주식] TestTeam
+{% endautoescape %}

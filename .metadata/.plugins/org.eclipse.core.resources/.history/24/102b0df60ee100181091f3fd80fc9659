@@ -1,0 +1,143 @@
+<meta charset="UTF-8">
+{% extends 'commons/base.html' %}
+{% load board2_extra %}
+{% load static %}
+{% block script %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'board2/js/index.js' %}"></script>
+{% endblock script %}
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'board2/css/index.css' %}">
+{% endblock style %}
+
+{% block title %}
+	{% if postClass == 'F' %}자유게시판 
+	{% elif postClass == 'N' %}공지사항
+	{% endif %}
+{% endblock %}
+
+{% block board2 %}
+	{% if postClass == 'F' %}w3-blue
+	{% else %}
+	{% endif %}
+{% endblock %}
+	
+{% block noticeBoard %}
+	{% if postClass == 'N' %}w3-blue
+	{% else %}
+	{% endif %}
+{% endblock %}
+{% block dropdown %}w3-dropdown-content w3-bar-block w3-border{% endblock %}
+{% block content %}
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+  
+    <h5><b>
+    	{% if postClass == 'F' %}<i class="fa fa-coffee" aria-hidden="true"></i>  자유게시판
+    	{% elif postClass == 'N' %}<i class="fa fa-bell fa-fw"></i>  공지사항
+    	{% endif %}
+    </b></h5>
+  </header>
+ <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+
+      <div>
+      <div class="w3-bar">
+       	{% if user.is_active and postClass == 'F' %}
+	    <a href="{% url 'board2:write' postClass %}" class="w3-button w3-right w3-blue w3-small w3-margin-bottom" id="writeButton"><b>글쓰기</b></button>
+	    {% elif user.is_staff and postClass == 'N' %}
+	    <a href="{% url 'board2:write' postClass %}" class="w3-button w3-right w3-blue w3-small w3-margin-bottom" id="writeButton"><b>글쓰기</b></button>
+	    {% endif %}
+	    <a href="{% url 'board2:index' postClass 1 %}" class="w3-button w3-right w3-blue w3-small w3-margin-bottom w3-margin-right"><b>최신목록</b></a>
+
+		</div>
+		{% if search %}
+		<h5><font class="w3-orange">{{ search }}</font>({{ option }})에 대한 검색결과 총 <b>{{ paginator.count }}</b>건 </h5>
+        {% endif %}
+        <table class="w3-table w3-striped w3-white w3-border">
+          <thead class="w3-light-gray">
+	          <tr>
+				<th style="width:80px;">글번호</th>
+				<th style="width:60%;"><p class="align_center">글제목</p></th>
+				<th style="width:10%;"><p class="align_center">글쓴이</p></th>
+				<th style="width:10%;"><p class="align_center">조회수</p></th>
+				<th><p class="align_center">작성일</p></th>
+	          </tr>
+          </thead>
+        <tbody>
+        {% for post in posts %}
+          <tr>
+          	<td style="font-size:12px; text-align:left" >{{ post.id }}</td>
+            <td>
+		        <span class="overflow_hidden" style="margin-left:{{ post.how_many_replied|pixelize:"10" }}">
+	            {% if post.reply %}└{% endif %}
+		        </span>
+	            <a class="w3-text-dark-grey" href="{% url 'board2:read' post.post_class post.id %}" style="text-decoration:none">
+	            
+	            {% if search %}
+		        	{{ post.title|title_color:search|safe }}
+		        	{% if option == '제목 + 내용' %}
+		        	<br><br><font style="font-size:14px;">{{ post.content|content_color:search|safe }}</font>
+		        	{% endif %}       
+		        {% else %}	
+		        	{{ post.title }}
+		        {% endif %}
+		        </a>
+		        {% if post.file_set.all %}
+		        	<i class="fa fa-download"></i>
+		        {% endif %}
+		        
+		        {% if post.post_class == 'F' %}	
+		        	 <a href='javascript:open_comment_page("{% url 'board2:comment_page' post.id %}")' class="bold w3-text-blue">
+		        	 {% if post.comment_set.get_display_yes_comment_set> 0 %}[{{ post.comment_set.all.count }}]{% endif %}</a> 
+		       	{% endif %}
+		        
+            </td>
+            <td class="w3-text-dark-grey overflow_hidden align_center" ><p class="align_center">
+            {% if search %}
+            {{ post.writer|title_color:search|safe }}
+            {% else %}
+            {{ post.writer }}
+            {% endif %}
+            </p></td>
+            <td class="w3-text-dark-grey" style="font-size:12px;"><p class="align_center">{{ post.hit }}</p></td>
+            <td class="w3-text-dark-grey align_right" style="width:140px; font-size:12px;">
+            {% if not post.updated_at %}{{ post.created_at|date:"Y.m.d H:i:s" }}{% else %}{{ post.updated_at|date:"Y.m.d H:i:s" }}{% endif %}</td>
+          </tr>
+		{% endfor %}
+        </tbody>
+        </table>
+        <div class="w3-bar w3-center w3-margin-top">
+			  <a href="{% url 'board2:index' postClass page|page_move:"-5" %}" class="w3-button">&laquo;</a>
+		      {% for p in page_list %}
+				{% if p == page %}
+					 <a href="{% url 'board2:index' postClass p %}" class="w3-button w3-blue">{{ p }}</a>				  
+				{% else %}
+					 <a href="{% url 'board2:index' postClass p %}" class="w3-button">{{ p }}</a>		
+				{% endif %}
+		      {% endfor %}
+		      {% if page|page_move:"5" > paginator.num_pages%}
+			  	<a href="{% url 'board2:index' postClass paginator.num_pages %}" class="w3-button">&raquo; </a>
+			  {% else %}
+			  	<a href="{% url 'board2:index' postClass page|page_move:"5" %}" class="w3-button">&raquo; </a>
+			  {% endif %}	  
+		</div>		
+      </div>
+      <hr>
+      <center class="w3-container">
+	      <form action="{% url 'board2:index' postClass 1 %}" method="get" class="w3-row" style="width:650px;">
+	      	<input name="search" class='w3-input w3-border w3-col' style="width: 60%;"/>
+	      	<select class="w3-select w3-col w3-border" name="option" style="width:30%;">
+				  <option value="제목 + 내용" selected>제목 + 내용</option>
+				  <option value="제목만">제목만</option>
+				  <option value="작성자">작성자</option>
+			</select>
+			<div class='w3-col w3-rest' style="width: 45px;">
+			    <button type="submit" class='w3-button w3-blue' style="height:40.5px;"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</div>
+	      </form>
+      </center>
+    </div>
+  </div>
+  {% endblock content %}

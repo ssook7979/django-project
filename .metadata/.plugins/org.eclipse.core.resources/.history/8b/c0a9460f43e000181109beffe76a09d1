@@ -1,0 +1,66 @@
+#pagingIssue {
+	position: absolute;
+    top: 222px;
+    left: 0;
+    width:100%;
+    height:25px;
+}
+#pagingNews {
+	position: absolute;
+    top: 472px;
+    left: 0;
+    width:100%;
+    height:25px;
+}
+
+#issueList {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:250px;
+}
+newsList {
+	position: absolute;
+    top: 250px;
+    left: 0;
+    width:100%;
+    height:250px;
+}
+chart_div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:500px;
+}
+chartWrapper {
+    position: relative;
+    padding-bottom: 100%;
+    height: 0;
+    overflow:hidden;
+}
+#newsTableWrapper {
+	position: relative;
+    padding-bottom: 100%;
+    height: 0;
+    overflow:hidden;
+}
+#next {
+    position: absolute;
+    top: 220px;
+    right:0;
+    z-index: 99;
+    width:15px;
+	text-align: center;
+	margin:auto;
+}
+#prev {
+    position: absolute;
+    top: 220px;
+    z-index: 99;
+    width:15px;
+	text-align: center;
+	margin:auto;
+}
+

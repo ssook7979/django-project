@@ -1,0 +1,45 @@
+#pagingIssue {
+	position: absolute;
+    top: 222px;
+    left: 0;
+    width:100%;
+    height:25px;
+}
+#pagingNews {
+	position: absolute;
+    top: 472px;
+    left: 0;
+    width:100%;
+    height:25px;
+}
+#chart-div {
+	position:absolute;
+	right:0px;
+	top:0px;
+	width: 400px;
+	height: 300px;
+}
+#newsTableWrapper {
+	position: relative;
+    padding-bottom: 100%;
+    height: 0;
+    overflow:hidden;
+}
+#next {
+    position: absolute;
+    top: 220px;
+    right:0;
+    z-index: 99;
+    width:15px;
+	text-align: center;
+	margin:auto;
+}
+#prev {
+    position: absolute;
+    top: 220px;
+    z-index: 99;
+    width:15px;
+	text-align: center;
+	margin:auto;
+}
+

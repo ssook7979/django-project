@@ -1,0 +1,55 @@
+'''
+from django.db import models
+from django.utils import timezone
+import datetime
+from bokeh.themes import default
+
+class Article(models.Model):
+    auto_id = models.AutoField(default=0, primary_key=True)
+    stock_name = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
+    press = models.CharField(max_length=20)
+    url = models.CharField(max_length=200)
+    date = models.DateTimeField('date of first writing')#주석은 첫번째 인수
+    time = models.TimeField()
+    
+    def __str__(self):
+        return self.title
+    
+    def was_written_recently(self):
+        return self.date1 >= timezone.now() - datetime.timedelta(days=1)
+    
+    def modify_article(self):
+        return self.article_id
+
+class Stock(models.Model):
+    auto_id = models.AutoField(default=0,primary_key=True)
+    stock_id = models.CharField(max_length=6)
+    stock_name = models.CharField(max_length=20)
+    date = models.DateField(null=True)
+    price = models.IntegerField(default=0)   
+    max_price = models.IntegerField(default=0)
+    min_price = models.IntegerField(default=0)
+    sales_amount = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.stock_name
+    
+    def recent_price(self):
+        return self.price
+
+
+class Word(models.Model):
+    auto_id = models.AutoField(default=0,primary_key=True)
+    date = models.DateField(null=True)
+    stock_name = models.CharField(max_length=20)
+    updown = models.IntegerField(default=0)
+    issue = models.CharField(max_length=100)
+    content = models.TextField()
+    #word_name = models.CharField(max_length=20)
+    #word_count = models.IntegerField(default=0)
+    #price = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.word_name
+'''

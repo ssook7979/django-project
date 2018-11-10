@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;mysite/static/common/js/includeHTML.js&apos; to &apos;common.js&apos;" description="Rename resource &apos;includeHTML.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="static/common/js/includeHTML.js" name="common.js" stamp="1536306384287" updateReferences="true"/>
+</session>

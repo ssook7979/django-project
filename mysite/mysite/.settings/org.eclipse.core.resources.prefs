@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//board/admin.py=UTF-8
+encoding//board/models.py=UTF-8
+encoding//board/templates/board/chart.html=UTF-8
+encoding//board/views.py=UTF-8

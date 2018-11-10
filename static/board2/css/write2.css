@@ -1,0 +1,14 @@
+#id_content {
+   padding: 10px;
+   height: 400px;
+   min-height: 50px;
+   overflow: auto;
+   resize: vertical;
+}
+#grippie {
+   display: block;
+   height: 5px;
+   background-color: #CCC;
+   border: 1px solid #888;
+   cursor: s-resize;
+}

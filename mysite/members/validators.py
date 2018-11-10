@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
+import re
+
+class PasswordFormatValidator:
+    """
+    Validate whether the password is right format
+    - at least one uppercase / downcase / number / Special Character
+    - 8-12 letters
+    """
+    def validate(self, password, user=None):
+        p = re.match(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,12}$', password)
+        if not p:
+            raise ValidationError(
+                _("대소문자,숫자,특수문자(#?!@$%^&*-)를 모두 사용하여 8-12자의 비밀번호를 작성하세요."),
+                code='password_not_proper_format',
+            )
+
+    def get_help_text(self):
+        return _("대소문자,숫자,특수문자(#?!@$%^&*-)를 모두 사용하여 8-12자의 비밀번호를 작성하세요.")

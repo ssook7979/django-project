@@ -1,0 +1,76 @@
+<meta charset="UTF-8">
+{% extends 'commons/base.html' %}
+{% load polls_extra %}
+{% load static %}
+
+{% block script %}
+{{ block.super }}
+{% endblock script %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'polls/css/index.css' %}">
+{{ block.super }}
+{% endblock style %}
+
+{% block title %}이슈투표 - 목록{% endblock title%}
+{% block polls %}w3-blue{% endblock polls%}
+{% block dropdown %}w3-dropdown-content w3-bar-block w3-border{% endblock %}
+
+{% block content %}
+  <header class="w3-container" style="padding-top:22px"> 
+    <h5><b>
+    	<i class="fa fa-bank" aria-hidden="true"></i>  이슈투표
+    </b></h5>
+  </header>
+ <div class="w3-container">
+    <div class="w3-row-padding">
+		<h5 class='w3-maring-bottom bold'><i class="fa fa-check-circle"></i>  진행중인 설문조사</h5>
+	{% if new_question_list %}
+	    <table class="w3-table w3-striped w3-white w3-hoverable w3-bordered w3-border">
+	    	<thead>
+		    	<tr class="w3-blue">
+		    		<th width="70%">제목</th>
+		    		<th width="15%"><p class="align-center">작성일</p></th>    	
+		    		<th width="15%"><p class="align-center">마감일</p></th>   	
+				</tr>
+	    	</thead>
+	    	<tbody>
+			{% for question in new_question_list %}
+				<tr>
+					<td class="w3-text-dark-grey"><a class="w3-text-dark-grey no_text_decoration" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td>
+					<td class="w3-text-dark-grey">{{ question.pub_date|date:"Y.m.d"}}</td>
+					<td class="w3-text-dark-grey">{{ question.end_date|date:"Y.m.d"}}</td>
+				</tr>
+			{% endfor %}
+	    	</tbody>
+		</table>
+	{% else %}
+		<p>등록된 설문조사가 없습니다.</p>	
+	{% endif %}
+	<hr>
+		<h5 class='w3-maring-bottom bold'><i class="fa fa-close"></i>  완료된 설문조사</h5>
+	{% if old_question_list %}
+	    <table class="w3-table w3-striped w3-white w3-hoverable w3-bordered w3-border">
+	    	<thead>
+		    	<tr class="w3-blue">
+		    		<th width="70%">제목</th>
+		    		<th width="15%"><p class="align-center">작성일</p></th>    	
+		    		<th width="15%"><p class="align-center">마감일</p></th>   	
+				</tr>
+	    	</thead>
+	    	<tbody>
+			{% for question in old_question_list %}
+				<tr>
+					<td class="w3-text-dark-grey"><a class="w3-text-dark-grey no_text_decoration" href="{% url 'polls:results' question.id %}">{{ question.question_text }}</a></td>
+					<td class="w3-text-dark-grey"><p class="align-center">{{ question.pub_date|date:"Y.m.d"}}</p></td>
+					<td class="w3-text-dark-grey"><p class="align-center">{{ question.end_date|date:"Y.m.d"}}</p></td>
+				</tr>
+			{% endfor %}
+	    	</tbody>
+		</table>
+	{% else %}
+		<p>등록된 설문조사가 없습니다.</p>	
+	{% endif %}	
+	</div>
+</div>
+{% endblock content %}

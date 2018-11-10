@@ -1,0 +1,33 @@
+{% extends 'commons/base.html' %}
+{% load static %}
+
+{% block script %}
+{{ block.super }}
+{% load board2_extra %}
+{% endblock script %}
+
+{% block style %}
+{{ block.super }}
+{% endblock style %}
+
+{% block title %}
+	비밀번호 재설정
+{% endblock %}
+
+{% block user_change %}
+	w3-blue
+{% endblock %}
+{% block content %}
+  {% if validlink %}
+    <h3>Change password</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">비밀번호 재설정</button>
+    </form>
+  {% else %}
+    <p>
+      	만료된 링크입니다. 이메일을 다시 요청하십시오.
+    </p>
+  {% endif %}
+{% endblock %}

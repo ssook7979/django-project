@@ -1,0 +1,31 @@
+<!-- Button to open the modal login form -->
+<button class="text-button w3-white" onclick="document.getElementById('login-modal').style.display='block'">
+	<span class="w3-text-blue bold underline">로그인</span>
+</button>
+<span> 하세요!</span>
+
+<!-- The Modal -->
+<div id="login-modal" class="modal">
+  <span onclick=shut_modal() class="close" title="Close Modal">&times;</span>
+
+  <!-- Modal Content -->
+  
+  <form class="modal-content animate" id="loginForm">
+	  <div class="container">
+	  <div id='id_panel-login' style='display:none' class='w3-panel w3-pale-red'>
+		<p>올바른 로그인 정보를 입력해주세요.</p>
+	  </div>
+	  {% csrf_token %}
+		  <h2>로그인</h2>
+		  <hr>
+		{% for field in form %}
+		  {{ field.label_tag }}
+		  {{ field }}
+		{% endfor %}
+	      <button type="button" class="w3-button w3-blue w3-center" onclick=loginAjax()>로그인</button>
+	      <button type="button" class="w3-button w3-red w3-center" onclick=shut_modal()>취소</button>
+	      <a class="underline" href="{% url 'password_reset' %}">비밀번호</a><span class="psw">를 잊어버리셨나요?</span>
+	  </div>
+  </form>
+</div>
+

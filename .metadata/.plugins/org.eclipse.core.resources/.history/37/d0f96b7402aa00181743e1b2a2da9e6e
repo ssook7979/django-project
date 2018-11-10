@@ -1,0 +1,31 @@
+<p style="margin:0px">회원이 아니신가요?</p>
+<span>지금</span>
+<button id="signupButton" onclick="document.getElementById('id01').style.display='block'"><b><u>회원가입</u></b></button>
+<span>하세요!</span>
+<!-- The Modal (contains the Sign Up form) -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" method="post" action="{% url 'members:signupProcess' %}">
+  {% csrf_token %}
+    <div class="container">
+      <h1>회원가입</h1>
+      <hr>
+      <label for="email"><b>아이디</b></label>
+      <input class="textInput" type="text" placeholder="아이디로 사용할 이메일을 입력하세요" name="email" required>
+      
+      <label for="username"><b>닉네임</b></label>
+      <input class="textInput" type="text" placeholder="닉네임을 입력해주세요" name="uname" required>
+
+      <label for="password1"><b>비밀번호</b></label>
+      <input class="passwordInput" type="password" placeholder="비밀번호를 입력하세요" name=password1 required>
+
+      <label for="password2"><b>비밀번호 확인</b></label>
+      <input class="passwordInput" type="password" placeholder="비밀번호 확인" name="password2" required>
+
+      <div class="clearfix">
+        <button type="submit" class="w3-button w3-blue" id="btn">회원가입</button>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-red">취소</button>
+      </div>
+    </div>
+  </form>
+</div>

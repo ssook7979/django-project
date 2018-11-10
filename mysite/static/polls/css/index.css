@@ -1,0 +1,16 @@
+.overflow_hidden {
+	text-overflow:ellipsis; 
+	overflow:hidden;
+	 white-space:nowrap;
+}
+
+.align_center {
+	text-align:center;
+}
+.align_right {
+	text-align:center;
+}
+table {
+	width:100%;
+    table-layout:fixed;	
+}

@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+D:\dev\django-project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+688827509.index
+3235099271.index
+3455008614.index
+2645553453.index
+4132219461.index

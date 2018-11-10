@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: password_reset
+From: webmaster@localhost
+To: ssook7979@naver.com
+Date: Wed, 10 Oct 2018 12:58:09 -0000
+Message-ID: <153917628955.21320.5425358627566942630@DESKTOP-EC4J1LJ>
+
+
+To initiate the password reset process for your ssook7979@naver.com TestSite Account,
+click the link below:
+
+http://127.0.0.1:8000/reset/NjI/50b-f7a6aea68f9e4d7e7a13/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The TestSite Team
+
+-------------------------------------------------------------------------------
