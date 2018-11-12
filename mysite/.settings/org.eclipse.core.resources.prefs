@@ -7,6 +7,7 @@ encoding//board/templates/board/index.html=UTF-8
 encoding//board/views.py=utf-8
 encoding//board2/admin.py=utf-8
 encoding//board2/forms.py=utf-8
+encoding//board2/templates/admin/board2/post/change_list.html=UTF-8
 encoding//board2/urls.py=UTF-8
 encoding//board2/views.py=utf-8
 encoding//members/admin.py=utf-8

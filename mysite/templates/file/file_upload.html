@@ -16,7 +16,7 @@
 <table id="gallery" class="w3-table">
 	<thead>
 		<tr>
-			<th>업로드 한 파일 ({{file_list.count}}개)</th>
+			<th>업로드 한 파일 {% if file_list.count %}({{file_list.count}}개){% endif %}</th>
 		</tr>
 	</thead>
 	<tbody>

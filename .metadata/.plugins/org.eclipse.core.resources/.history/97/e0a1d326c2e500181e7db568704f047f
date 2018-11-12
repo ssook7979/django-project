@@ -1,0 +1,13 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}
+	{{ block.super }}
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock %}
+{% block object-tools-items %}
+ <li>
+	 <a href='auto_write/' class="addlink">임의 게시글 등록</a>
+ </li>
+{{ block.super }}
+{% endblock %}

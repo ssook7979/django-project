@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<a class="btn btn-primary js-upload-photos">
+	<span class="glyphicon glyphicon-cloud-upload"></span> 파일 추가하기
+</a>
+
+  <div class="well text-muted text-center" style="padding-top: 4rem; padding-bottom: 4rem;">
+    <span class="glyphicon glyphicon-arrow-down" style="font-size: 4rem;"></span>
+    <h3>파일을 드래그 하거나 파일 추가 버튼을 클릭하여 업로드 하세요</h3>
+  </div>
+
+<input id="fileupload" type="file" name="file" multiple
+	style="display:none"
+	data-url="{% url 'file:upload' %}"
+	data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+	
+<table id="gallery" class="w3-table">
+	<thead>
+		<tr>
+			<th>업로드 한 파일 ({{file_list.count}}개)</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for file in file_list %}
+			<tr class='dashed_bottom_border'>
+					<td><a href="{{ file.file.url }}">{{ file.file.name }}</a></td>
+					<td>
+						<form method="post">{% csrf_token %}
+							<button type="button" class="text-button" onclick='javascript: file_delete("{% url 'file:delete' file.id %}");'>x</button>
+						</form>
+					</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'file/progressbar.html' %}

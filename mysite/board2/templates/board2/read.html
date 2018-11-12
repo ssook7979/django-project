@@ -69,16 +69,14 @@
 			  	</td>
 			  </tr>
 			  {% if post.file_set %}  
-			  	{% for file in post.file_set.all %}
 			  <tr>
 			  	<td style="border-top:1px dashed gray;">
-				  	<p class="bold">첨부파일</p>
-			  		
+				  	<p class="bold">첨부파일</p>  		
+				  	{% for file in post.file_set.all %}
 			  		<a href="{{ file.file.url }}" download>{{ file.file.name }}({{ file.file.size }} bytes)</a>
+				  	{% endfor %}
 			  	</td>
 			  </tr>
-			  	{% endfor %}
-			  
 			  {% endif %}
 		  	</tbody>	  
 		  </table>
