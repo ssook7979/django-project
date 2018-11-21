@@ -1,7 +1,5 @@
-django-project
+django-project(Django를 이용한 주식정보 제공 서비스)
 ===============
-Django를 이용한 주식정보 제공 서비스
-----------------------------------
 목차
 ----
 ##### 1. 개발환경[[이동](https://github.com/ssook7979/django-project#1-개발환경)]
