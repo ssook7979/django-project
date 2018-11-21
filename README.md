@@ -129,6 +129,8 @@ Django를 이용한 주식정보 제공 서비스
   * [crawler](https://github.com/ssook7979/django-project/blob/master/mysite/board/crawler.py#L136)
   * [keyword 관련함수](https://github.com/ssook7979/django-project/blob/master/mysite/board/crawler.py#L18)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/admin/board/article/change_list.html)
+
+
 ![main1](./img/img_13.png)
 ### 키워드 추출 함수 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![main1](./img/img_14.png)
