@@ -2,6 +2,14 @@ django-project
 ===============
 Django를 이용한 주식정보 제공 서비스
 ----------------------------------
+```
+목차
+1. 개발환경
+ 1) Back-end
+ 2) 오픈 라이브러리
+2. 목적
+3. 페이지 상세설명
+```
 
 ## 1. 개발환경
 ### 1) Back-end
@@ -22,13 +30,13 @@ Django를 이용한 주식정보 제공 서비스
 * 커뮤니티를 제공하고 사용자의 관심 주식 및 이슈 분석 (미구현)
 * 뉴스 및 커뮤니티 내 키워드를 분석하여 주가 예측 (미구현)
 ## 3. 페이지 상세설명
-### 메인페이지
+### 메인페이지 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/board/views.py#L35) 
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/index.html)
 ![main1](./img/img_2.png)
 ![main2](./img/img_3.png)
-### 로그인
+### 로그인 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/members/views.py#L64) 
   * [models](https://github.com/ssook7979/django-project/blob/master/mysite/members/models.py)
@@ -36,11 +44,11 @@ Django를 이용한 주식정보 제공 서비스
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/members/templates/members/login.html)
   * [forms](https://github.com/ssook7979/django-project/blob/master/mysite/members/forms.py#L75)
 ![main1](./img/img_4.png)
-### 비밀번호 재설정
+### 비밀번호 재설정 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/templates/registration/password_reset_form.html)
 ![main1](./img/img_5.png)
-### 비밀번호/닉네임 변경
+### 비밀번호/닉네임 변경 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크 (비밀번호 변경)
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/members/views.py#L48) 
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/members/templates/members/password_change.html)
@@ -50,7 +58,7 @@ Django를 이용한 주식정보 제공 서비스
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/members/templates/members/user_change.html)
   * [forms](https://github.com/ssook7979/django-project/blob/master/mysite/members/forms.py#L91)
 ![main1](./img/img_6.png)
-### 회원가입
+### 회원가입 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/members/views.py#L116) 
   * [models](https://github.com/ssook7979/django-project/blob/master/mysite/members/models.py)
@@ -59,7 +67,7 @@ Django를 이용한 주식정보 제공 서비스
   * [forms](https://github.com/ssook7979/django-project/blob/master/mysite/members/forms.py#L42)
   * [validators](https://github.com/ssook7979/django-project/blob/master/mysite/members/validators.py)
 ![main1](./img/img_7.png)
-### 주식정보 화면
+### 주식정보 화면 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/board/views.py#L53) 
   * [models](https://github.com/ssook7979/django-project/blob/master/mysite/board/models.py)
@@ -67,20 +75,20 @@ Django를 이용한 주식정보 제공 서비스
   * [HTML 차트](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/chart1.html)
   * [HTML 뉴스](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/article_html.html)
 ![main1](./img/img_8.png)
-### 게시판 - 목록
+### 게시판 - 목록 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/board2/views.py#L26) 
   * [models](https://github.com/ssook7979/django-project/blob/master/mysite/board2/models.py)
   * [JavaScript(댓글창열기)](https://github.com/ssook7979/django-project/blob/master/static/board2/js/index.js)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board2/templates/board2/index.html)
 ![main1](./img/img_9.png)
-### 게시판 - 글읽기/댓글
+### 게시판 - 글읽기/댓글 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/board2/views.py#L59) 
   * [JavaScript](https://github.com/ssook7979/django-project/blob/master/static/board2/js/read.js)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board2/templates/board2/read.html)
 ![main1](./img/img_10.png)
-### 게시판 - 글쓰기
+### 게시판 - 글쓰기 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크(글쓰기)
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/board2/views.py#L91) 
   * [forms](https://github.com/ssook7979/django-project/blob/master/mysite/board2/forms.py#L15)
@@ -91,22 +99,25 @@ Django를 이용한 주식정보 제공 서비스
   * [models](https://github.com/ssook7979/django-project/blob/master/mysite/file/models.py)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/file/templates/file/upload.html)
 ![main1](./img/img_11.png)
-### 관리자 페이지 – 주식가격 업데이트
+### 관리자 페이지 – 주식가격 업데이트 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [admin](https://github.com/ssook7979/django-project/blob/master/mysite/board/admin.py#L12) 
   * [crawler](https://github.com/ssook7979/django-project/blob/master/mysite/board/crawler.py#L86)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/admin/board/stock/change_list.html)
 ![main1](./img/img_12.png)
-### 관리자 페이지 – 뉴스 업데이트
+### 관리자 페이지 – 뉴스 업데이트 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 코드 링크
   * [admin](https://github.com/ssook7979/django-project/blob/master/mysite/board/admin.py#L29) 
   * [crawler](https://github.com/ssook7979/django-project/blob/master/mysite/board/crawler.py#L136)
   * [keyword 관련함수](https://github.com/ssook7979/django-project/blob/master/mysite/board/crawler.py#L18)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/admin/board/article/change_list.html)
 ![main1](./img/img_13.png)
-### 키워드 추출 방법
+### 키워드 추출 방법 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![main1](./img/img_14.png)
 <pre><code>
+# 단어 유사도 함수
+from collections import Counter
+
 def check_word_similarity(s1,s2):
     s1w = re.findall('[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|W*]', s1.lower())
     s2w = re.findall('[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|W*]', s2.lower())
@@ -118,7 +129,8 @@ def check_word_similarity(s1,s2):
     
     common_ratio = difflib.SequenceMatcher(None, s1w, s2w).ratio()
     return common_ratio
-            
+
+# 비슷한 단어 합치기
 def counter_reduce(counter, un_word=['$^$%']):
     new_counter = {}
     examined = []
@@ -137,7 +149,7 @@ def counter_reduce(counter, un_word=['$^$%']):
     result = {**new_counter, **counter}
     return result
 </code></pre>
-### 비슷한 단어 합치기(counter_reduce) 예시
+### 비슷한 단어 합치기(counter_reduce) 예시 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![counter_reduce](./img/img_17.png)
-### 키워드 추출 예시
+### 키워드 추출 예시 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![main1](./img/img_15.png)
