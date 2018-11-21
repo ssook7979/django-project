@@ -69,7 +69,7 @@
         {% for post in posts %}
           <tr>
           	<td style="font-size:12px; text-align:left" >{{ post.id }}</td>
-            <td>
+            <td class="overflow_hidden">
 		        <span class="overflow_hidden" style="margin-left:{{ post.how_many_replied|pixelize:"10" }}">
 	            {% if post.reply %}└{% endif %}
 		        </span>
@@ -94,7 +94,7 @@
 		       	{% endif %}
 		        
             </td>
-            <td class="w3-text-dark-grey overflow_hidden align_center" ><p class="align_center">
+            <td class="w3-text-dark-grey overflow_hidden align_center"><p class="align_center">
             {% if search %}
             {{ post.writer|title_color:search|safe }}
             {% else %}
