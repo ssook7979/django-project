@@ -12,21 +12,21 @@ Django를 이용한 주식정보 제공 서비스
 * ###### 메인페이지[[이동](https://github.com/ssook7979/django-project#메인페이지-top)]
 * ###### 로그인[[이동](https://github.com/ssook7979/django-project#로그인-top)]
 * ###### 회원정보 변경
- * ###### 비밀번호 재설정[[이동](https://github.com/ssook7979/django-project#비밀번호-재설정-top)]
- * ###### 비밀번호/닉네임 변경[[이동](https://github.com/ssook7979/django-project#비밀번호닉네임-변경-top)]
+    * ###### 비밀번호 재설정[[이동](https://github.com/ssook7979/django-project#비밀번호-재설정-top)]
+    * ###### 비밀번호/닉네임 변경[[이동](https://github.com/ssook7979/django-project#비밀번호닉네임-변경-top)]
 * ###### 회원가입[[이동](https://github.com/ssook7979/django-project#회원가입-top)]
 * ###### 주식정보 화면[[이동](https://github.com/ssook7979/django-project#주식정보-화면-top)]
 * ###### 게시판
- * ###### 게시판 - 목록[[이동](https://github.com/ssook7979/django-project#게시판---목록-top)]
- * ###### 게시판 - 글읽기/댓글[[이동](https://github.com/ssook7979/django-project#게시판---글읽기댓글-top)]
- * ###### 게시판 - 글쓰기[[이동](https://github.com/ssook7979/django-project#게시판---글쓰기-top)]
+    * ###### 게시판 - 목록[[이동](https://github.com/ssook7979/django-project#게시판---목록-top)]
+    * ###### 게시판 - 글읽기/댓글[[이동](https://github.com/ssook7979/django-project#게시판---글읽기댓글-top)]
+    * ###### 게시판 - 글쓰기[[이동](https://github.com/ssook7979/django-project#게시판---글쓰기-top)]
 * ###### 관리자 페이지(주가,뉴스 데이터 업데이트)
- * ###### 관리자 페이지 – 주식가격 업데이트[[이동](https://github.com/ssook7979/django-project#관리자-페이지---주식가격-업데이트-top)]
- * ###### 관리자 페이지 – 뉴스 업데이트[[이동](https://github.com/ssook7979/django-project#관리자-페이지---뉴스-업데이트-top)]
+    * ###### 관리자 페이지 – 주식가격 업데이트[[이동](https://github.com/ssook7979/django-project#관리자-페이지---주식가격-업데이트-top)]
+    * ###### 관리자 페이지 – 뉴스 업데이트[[이동](https://github.com/ssook7979/django-project#관리자-페이지---뉴스-업데이트-top)]
 * ###### 뉴스키워드 추출 방법
- * ###### 키워드 추출 함수[[이동](https://github.com/ssook7979/django-project#키워드-추출-함수-top)]
- * ###### 비슷한 단어 합치기 예시[[이동](https://github.com/ssook7979/django-project#비슷한-단어-합치기-예시-top)]
- * ###### 키워드 추출 예시 [[이동](https://github.com/ssook7979/django-project#키워드-추출-예시-top)]
+    * ###### 키워드 추출 함수[[이동](https://github.com/ssook7979/django-project#키워드-추출-함수-top)]
+    * ###### 비슷한 단어 합치기 예시[[이동](https://github.com/ssook7979/django-project#비슷한-단어-합치기-예시-top)]
+    * ###### 키워드 추출 예시 [[이동](https://github.com/ssook7979/django-project#키워드-추출-예시-top)]
 ***
 ## 1. 개발환경 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ### 1) Back-end
