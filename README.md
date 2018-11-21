@@ -1,4 +1,3 @@
--
 django-project(Django를 이용한 주식정보 제공 서비스)
 ===============
 목차
@@ -27,7 +26,7 @@ django-project(Django를 이용한 주식정보 제공 서비스)
     * ###### 비슷한 단어 합치기 예시[[이동](https://github.com/ssook7979/django-project#비슷한-단어-합치기-예시-top)]
     * ###### 키워드 추출 예시 [[이동](https://github.com/ssook7979/django-project#키워드-추출-예시-top)]
 ***
-## 1. 개발환경 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
+## 1. 개발환경 [[top](https://github.com/ssook7979/django-project/tree/master#django-project(Django를-이용한-주식정보-제공-서비스))]
 ### 1) Back-end
 * Python Ver. 3.6.4
 * Django Ver. 2.0.7
