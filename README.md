@@ -2,28 +2,27 @@ django-project
 ===============
 Django를 이용한 주식정보 제공 서비스
 ----------------------------------
-```
 목차
-1. 개발환경
- 1) Back-end
- 2) 오픈 라이브러리
-2. 목적
-3. 페이지 상세설명
-* 메인페이지
-* 로그인
-* 비밀번호 재설정
-* 비밀버호/닉네임 변경
-* 회원가입
-* 주식정보 화면
-* 게시판 - 목록
-* 게시판 - 글읽기/댓글
-* 게시판 - 글쓰기
-* 관리자 페이지 – 주식가격 업데이트
-* 관리자 페이지 – 뉴스 업데이트
-* 키워드 추출 함수
-* 비슷한 단어 합치기 예시
-* 키워드 추출 
-```
+----
+##### 1. 개발환경[[이동](https://github.com/ssook7979/django-project#1-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD)]
+###### 1) Back-end[[이동](https://github.com/ssook7979/django-project#1-back-end)]
+###### 2) 오픈 라이브러리[[이동](https://github.com/ssook7979/django-project#2-오픈-라이브러리)]
+##### 2. 목적[[이동](https://github.com/ssook7979/django-project#2-목적)]
+##### 3. 페이지 상세설명[[이동](https://github.com/ssook7979/django-project#3-페이지-상세설명)]
+* 메인페이지[[이동](https://github.com/ssook7979/django-project#메인페이지-top)]
+* 로그인[[이동](https://github.com/ssook7979/django-project#로그인-top)]
+* 비밀번호 재설정[[이동](https://github.com/ssook7979/django-project#비밀번호-재설정-top)]
+* 비밀버호/닉네임 변경[[이동](https://github.com/ssook7979/django-project#비밀버호닉네임-변경-top)]
+* 회원가입[[이동](https://github.com/ssook7979/django-project#회원가입-top)]
+* 주식정보 화면[[이동](https://github.com/ssook7979/django-project#주식정보-화면-top)]
+* 게시판 - 목록[[이동](https://github.com/ssook7979/django-project#게시판--목록-top)]
+* 게시판 - 글읽기/댓글[[이동](https://github.com/ssook7979/django-project#게시판--글읽기댓글-top)]
+* 게시판 - 글쓰기[[이동](https://github.com/ssook7979/django-project#게시판--글쓰기-top)]
+* 관리자 페이지 – 주식가격 업데이트[[이동](https://github.com/ssook7979/django-project#관리자-페이지--주식가격-업데이트-top)]
+* 관리자 페이지 – 뉴스 업데이트[[이동](https://github.com/ssook7979/django-project#관리자-페이지--뉴스-업데이트-top)]
+* 키워드 추출 함수[[이동](https://github.com/ssook7979/django-project#키워드-추출-함수-top)]
+* 비슷한 단어 합치기 예시[[이동](https://github.com/ssook7979/django-project#비슷한-단어-합치기-예시-top)]
+* 키워드 추출 [[이동](https://github.com/ssook7979/django-project#키워드-추출-top)]
 
 ## 1. 개발환경
 ### 1) Back-end
