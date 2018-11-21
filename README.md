@@ -9,7 +9,7 @@ Django를 이용한 주식정보 제공 서비스
 ###### 2) 오픈 라이브러리[[이동](https://github.com/ssook7979/django-project#2-오픈-라이브러리)]
 ##### 2. 목적[[이동](https://github.com/ssook7979/django-project#2-목적)]
 ##### 3. 페이지 상세설명[[이동](https://github.com/ssook7979/django-project#3-페이지-상세설명)]
-###### * 메인페이지[[이동](https://github.com/ssook7979/django-project#메인페이지-top)]
+* ###### 메인페이지[[이동](https://github.com/ssook7979/django-project#메인페이지-top)]
 * 로그인[[이동](https://github.com/ssook7979/django-project#로그인-top)]
 * 비밀번호 재설정[[이동](https://github.com/ssook7979/django-project#비밀번호-재설정-top)]
 * 비밀번호/닉네임 변경[[이동](https://github.com/ssook7979/django-project#비밀번호닉네임-변경-top)]
