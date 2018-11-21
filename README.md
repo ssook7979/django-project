@@ -9,6 +9,20 @@ Django를 이용한 주식정보 제공 서비스
  2) 오픈 라이브러리
 2. 목적
 3. 페이지 상세설명
+* 메인페이지
+* 로그인
+* 비밀번호 재설정
+* 비밀버호/닉네임 변경
+* 회원가입
+* 주식정보 화면
+* 게시판 - 목록
+* 게시판 - 글읽기/댓글
+* 게시판 - 글쓰기
+* 관리자 페이지 – 주식가격 업데이트
+* 관리자 페이지 – 뉴스 업데이트
+* 키워드 추출 함수
+* 비슷한 단어 합치기 예시
+* 키워드 추출 
 ```
 
 ## 1. 개발환경
@@ -22,6 +36,7 @@ Django를 이용한 주식정보 제공 서비스
 * Google Chart
 * konlpy Ver. 0.4.4
 * jQuery-File-Upload
+* BeautifulSoup
 ## 2. 목적
 * 주가의 변화와 관련 뉴스를 한 페이지에서 볼 수 있는 서비스 제공
   * 각 뉴스의 주요 키워드 추출하여 제공
@@ -112,7 +127,7 @@ Django를 이용한 주식정보 제공 서비스
   * [keyword 관련함수](https://github.com/ssook7979/django-project/blob/master/mysite/board/crawler.py#L18)
   * [HTML](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/admin/board/article/change_list.html)
 ![main1](./img/img_13.png)
-### 키워드 추출 방법 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
+### 키워드 추출 함수 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![main1](./img/img_14.png)
 <pre><code>
 # 단어 유사도 함수
@@ -149,7 +164,7 @@ def counter_reduce(counter, un_word=['$^$%']):
     result = {**new_counter, **counter}
     return result
 </code></pre>
-### 비슷한 단어 합치기(counter_reduce) 예시 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
+### 비슷한 단어 합치기 예시 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![counter_reduce](./img/img_17.png)
 ### 키워드 추출 예시 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ![main1](./img/img_15.png)
