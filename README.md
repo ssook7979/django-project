@@ -4,9 +4,9 @@ Django를 이용한 주식정보 제공 서비스
 ----------------------------------
 목차
 ----
-##### 1. 개발환경[[이동](https://github.com/ssook7979/django-project#1-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD)]
-###### 1) Back-end[[이동](https://github.com/ssook7979/django-project#1-back-end)]
-###### 2) 오픈 라이브러리[[이동](https://github.com/ssook7979/django-project#2-오픈-라이브러리)]
+##### 1. 개발환경[[이동](https://github.com/ssook7979/django-project#1-개발환경)]
+* ###### 1) Back-end[[이동](https://github.com/ssook7979/django-project#1-back-end)]
+* ###### 2) 오픈 라이브러리[[이동](https://github.com/ssook7979/django-project#2-오픈-라이브러리)]
 ##### 2. 목적[[이동](https://github.com/ssook7979/django-project#2-목적)]
 ##### 3. 페이지 상세설명[[이동](https://github.com/ssook7979/django-project#3-페이지-상세설명)]
 * ###### 메인페이지[[이동](https://github.com/ssook7979/django-project#메인페이지-top)]
@@ -24,7 +24,7 @@ Django를 이용한 주식정보 제공 서비스
 * ###### 비슷한 단어 합치기 예시[[이동](https://github.com/ssook7979/django-project#비슷한-단어-합치기-예시-top)]
 * ###### 키워드 추출 예시 [[이동](https://github.com/ssook7979/django-project#키워드-추출-예시-top)]
 ***
-## 1. 개발환경
+## 1. 개발환경 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 ### 1) Back-end
 * Python Ver. 3.6.4
 * Django Ver. 2.0.7
@@ -36,7 +36,7 @@ Django를 이용한 주식정보 제공 서비스
 * konlpy Ver. 0.4.4
 * jQuery-File-Upload
 * BeautifulSoup
-## 2. 목적
+## 2. 목적 [[top](https://github.com/ssook7979/django-project/tree/master#django-project)]
 * 주가의 변화와 관련 뉴스를 한 페이지에서 볼 수 있는 서비스 제공
   * 각 뉴스의 주요 키워드 추출하여 제공
   * 날짜 - 주식가격 차트 제공
