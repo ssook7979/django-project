@@ -38,7 +38,7 @@ def index(request):
     stocklist_down = Stock.objects.filter(date__range=[sub_day(TODAY,5), TODAY]).order_by('-date', 'updown_percentage')[:2]
     notice_list = Post.objects.filter(post_class__exact='N', display__exact='Y').order_by('list_order')[:3]
     post_list = Post.objects.filter(post_class__exact='F', display__exact='Y').order_by('list_order')[:6]
-    question = Question.objects.filter(Q(end_date__isnull=True)|Q(end_date__gt=TODAY)).latest('pub_date')
+    question = Question.objects.filter(Q(end_date__isnull=True)).latest('pub_date')
     context = {
         'stocklist_up': stocklist_up,
         'stocklist_down': stocklist_down,
