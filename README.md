@@ -14,6 +14,7 @@ django-project(Django를 이용한 주식정보 제공 서비스)
     * ###### 비밀번호/닉네임 변경[[이동](https://github.com/ssook7979/django-project#비밀번호닉네임-변경-top)]
 * ###### 회원가입[[이동](https://github.com/ssook7979/django-project#회원가입-top)]
 * ###### 주식정보 화면[[이동](https://github.com/ssook7979/django-project#주식정보-화면-top)]
+* ###### 이슈투표[[이동](https://github.com/ssook7979/django-project#이슈투표-top)]
 * ###### 게시판
     * ###### 게시판 - 목록[[이동](https://github.com/ssook7979/django-project#게시판---목록-top)]
     * ###### 게시판 - 글읽기/댓글[[이동](https://github.com/ssook7979/django-project#게시판---글읽기댓글-top)]
@@ -91,6 +92,14 @@ django-project(Django를 이용한 주식정보 제공 서비스)
   * [HTML 차트](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/chart1.html)
   * [HTML 뉴스](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/article_html.html)
 ![main1](./img/img_8.png)
+### 이슈투표 [[top](https://github.com/ssook7979/django-project/tree/master#django-projectDjango를-이용한-주식정보-제공-서비스)]
+* 코드 링크
+  * [views](https://github.com/ssook7979/django-project/blob/master/mysite/polls/views.py) 
+  * [models](https://github.com/ssook7979/django-project/blob/master/mysite/polls/models.py)
+  * [HTML 목록](https://github.com/ssook7979/django-project/blob/master/mysite/polls/templates/polls/index.html)
+  * [HTML 투표하기](https://github.com/ssook7979/django-project/blob/master/mysite/polls/templates/polls/detail.html)
+  * [HTML 결괍괴](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/results.html)
+![main1](./img/img_18.png)
 ### 게시판 - 목록 [[top](https://github.com/ssook7979/django-project/tree/master#django-projectDjango를-이용한-주식정보-제공-서비스)]
 * 코드 링크
   * [views](https://github.com/ssook7979/django-project/blob/master/mysite/board2/views.py#L26) 
