@@ -98,7 +98,7 @@ django-project(Django를 이용한 주식정보 제공 서비스)
   * [models](https://github.com/ssook7979/django-project/blob/master/mysite/polls/models.py)
   * [HTML 목록](https://github.com/ssook7979/django-project/blob/master/mysite/polls/templates/polls/index.html)
   * [HTML 투표하기](https://github.com/ssook7979/django-project/blob/master/mysite/polls/templates/polls/detail.html)
-  * [HTML 결괍괴](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/results.html)
+  * [HTML 결](https://github.com/ssook7979/django-project/blob/master/mysite/board/templates/board/results.html)
 ![main1](./img/img_18.png)
 ### 게시판 - 목록 [[top](https://github.com/ssook7979/django-project/tree/master#django-projectDjango를-이용한-주식정보-제공-서비스)]
 * 코드 링크
