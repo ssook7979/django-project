@@ -166,9 +166,9 @@ def counter_reduce(counter, un_word=['$^$%']):
         for word2 in word_list[idx+1:]:
             if check_word_similarity(word1, word2) > 0.65 and word1 not in examined and word2 not in examined:
                 if counter.get(word1,0) > counter.get(word2,0):
-                    counter[word1] = counter[word1] + counter[word2]
+                    new_counter[word1] = counter[word1] + counter[word2]
                 else:
-                    counter[word2] = counter[word1] + counter[word2]
+                    new_counter[word2] = counter[word1] + counter[word2]
                 del counter[word1]
                 del counter[word2]
                 examined.extend([word1,word2])
